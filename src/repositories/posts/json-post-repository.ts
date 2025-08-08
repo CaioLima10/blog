@@ -42,11 +42,4 @@ export class JsonPostRepository implements PostRepository {
 
 export const postRepository = new JsonPostRepository();
 
-(async () => {
-  // const posts = await postRepository.findAll()
-  // posts.forEach(post => console.log(post.id))
-
-  const post = await postRepository.findById("1b6a5f57-8a19-4933-91f4-1af678464ded")
-  console.log(post)
-})()
 

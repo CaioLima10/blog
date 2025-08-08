@@ -1,35 +1,32 @@
 import Image from "next/image";
 import Link from "next/link";
+import { HeadingPost } from "../headingPost";
+import { CoverImagePost } from "../coverImagePost";
+import { ContentPosts } from "../contentPosts";
 
 export function FeaturedPost() {
   return (
-    <section className="grid grid-cols-1 md:grid-cols-2 bg-red-500">
-      <div>
-        <Link
-          href={"#"}
-          className="w-full h-full flex overflow-hidden rounded-xl"
-        >
-          <Image
-            src={"/images/bryen_0.png"}
-            alt="Titulo do Post"
-            className="hover:scale-105 transition"
-            width={1200}
-            height={720}
-          />
-        </Link>
-      </div>
-      <div className="flex flex-col gap-4">
-        <div>
-          <time dateTime="2025-10-06">06-10-2025</time>
-          <h1>Lorem ipsum dolor sit amet consectetur</h1>
-        </div>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim
-          repudiandae culpa corrupti necessitatibus perferendis. Reprehenderit,
-          labore non nisi hic est facere illo ut odio ullam saepe vel nulla
-          cumque? Officiis.
-        </p>
-      </div>
+    <section className="grid grid-cols-1 md:grid-cols-2 group mb-24">
+      <CoverImagePost
+        ImageProps={{
+          alt: "Titulo do Post",
+          src: "/images/bryen_2.png",
+          width: 1200,
+          height: 720,
+          priority: true,
+        }}
+        LinkProps={{
+          href: "#",
+        }}
+      />
+      <ContentPosts
+        as="h1"
+        date="06/10/2025"
+        text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam alias
+          corporis asperiores ea ipsam itaque cumque minima dolorem repellat fugiat
+          nesciunt eos, amet mollitia quae ad velit? Nostrum, velit illo?"
+        title="itaque cumque minima dolorem repellat fugiat"
+      />
     </section>
   );
 }
