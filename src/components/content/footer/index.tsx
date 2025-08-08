@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="pb-16">
+    <footer className="pt-16 pb-8">
       <div>
         <span className="text-sm text-zinc-700 dark:text-zinc-300">
           Copyright &copy; {new Date().getFullYear()} -{" "}
