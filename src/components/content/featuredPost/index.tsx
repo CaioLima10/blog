@@ -1,19 +1,26 @@
-import Image from "next/image";
-import Link from "next/link";
-import { HeadingPost } from "../headingPost";
 import { CoverImagePost } from "../coverImagePost";
 import { ContentPosts } from "../contentPosts";
+import {
+  formatteDateTime,
+  formattedDateTimeToNow,
+} from "@/utils/formattedDateTime";
+import { findAllPublishedPosts } from "@/lib/cache/findAllPublishedPosts";
 
-export function FeaturedPost() {
+export async function FeaturedPost() {
+  const posts = await findAllPublishedPosts();
+
+  const post = posts[0];
+
   return (
     <section className="grid grid-cols-1 md:grid-cols-2 group mb-24">
       <CoverImagePost
         ImageProps={{
-          alt: "Titulo do Post",
-          src: "/images/bryen_2.png",
+          alt: post.title,
+          src: post.coverImageUrl,
           width: 1200,
           height: 720,
           priority: true,
+          title: post.title,
         }}
         LinkProps={{
           href: "#",
@@ -21,11 +28,11 @@ export function FeaturedPost() {
       />
       <ContentPosts
         as="h1"
-        date="06/10/2025"
-        text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam alias
-          corporis asperiores ea ipsam itaque cumque minima dolorem repellat fugiat
-          nesciunt eos, amet mollitia quae ad velit? Nostrum, velit illo?"
-        title="itaque cumque minima dolorem repellat fugiat"
+        date={formattedDateTimeToNow(post.createdAt)}
+        text={post.content}
+        title={formatteDateTime(post.createdAt)}
+        author={post.author}
+        heading={post.title}
       />
     </section>
   );
